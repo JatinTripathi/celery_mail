@@ -173,6 +173,7 @@
 	    var name = this.state.name.trim();
 	    var text = this.state.text.trim();
 	    var date = this.state.date.trim();
+	    var id = this.state.id;
 	    if (!text || !name) {
 	      return;
 	    }
@@ -206,7 +207,7 @@
 	
 	  handleGoalUpdate: function handleGoalUpdate(id) {
 	    $.ajax({
-	      url: '/api/update_goal/?id=' + id,
+	      url: '/api/update/?id=' + id,
 	      dataType: 'json',
 	      type: 'GET',
 	      success: function (data) {
@@ -215,7 +216,7 @@
 	          text: data.text,
 	          date: data.end_date,
 	          id: data.id,
-	          url: '/api/update_goal/'
+	          url: '/api/update/'
 	        });
 	      }.bind(this),
 	      error: function (xhr, status, err) {
@@ -456,7 +457,7 @@
 	    }
 	    e.preventDefault();
 	    $.ajax({
-	      url: '/api/completed/',
+	      url: '/api/complete/',
 	      dataType: 'json',
 	      type: 'POST',
 	      data: request,

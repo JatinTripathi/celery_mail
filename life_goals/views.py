@@ -112,21 +112,31 @@ def delete(request):
 @csrf_exempt
 def update_goal(request):
     try:
-        if request.method == 'GET':
-            goal = LifeGoal.objects.get(pk = request.GET.get('id'))
+        if (request.method == 'GET'):   
+            pk = request.GET.get('id').strip()
+
+            goal = LifeGoal.objects.get(pk = pk)
+            
+            date = str(goal.end_date)
+            date = date.split(' ')
+
+            description = goal.brief_description
+            if goal.rest_description:
+                description = description + goal.rest_description
+
             response = {
                 'name': goal.name,
-                'text': goal.brief_description + goal.rest_description,
-                'end_date': str(goal.end_date),
+                'text': description,
+                'end_date': date[0],
                 'id': goal.id}
             return JsonResponse(response, safe=False)
 
-        if request.method == 'POST':
+        if (request.method == 'POST'):
             data = request.POST
-
+            print data
             a = data.get('end_date').decode('utf-8')
             end_date = datetime.datetime.strptime(a, '%Y-%m-%d')
-
+            print end_date
             description_words_array = data.get('description').split()
             if len(description_words_array) > 10:
                 brief_description = ' '.join(description_words_array[:10])
@@ -139,7 +149,9 @@ def update_goal(request):
             goal.name = data.get('name')
             goal.brief_description = brief_description
             goal.rest_description = rest_description
+            print '1'
             goal.end_date = end_date
+            print '2'
             goal.save()
             
             return JsonResponse({'message': 'Saved'}, safe=False)

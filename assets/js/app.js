@@ -77,7 +77,7 @@ var NewGoal = React.createClass({
     var name = this.state.name.trim();
     var text = this.state.text.trim();
     var date = this.state.date.trim();
-    var id = this.state.date;
+    var id = this.state.id;
     if (!text || !name) {
       return;
     }
@@ -111,7 +111,7 @@ var NewGoal = React.createClass({
 
   handleGoalUpdate: function(id) {
     $.ajax({
-      url: '/api/update_goal/?id=' + id,
+      url: '/api/update/?id=' + id,
       dataType: 'json',
       type: 'GET',
       success: function(data) {
@@ -120,7 +120,7 @@ var NewGoal = React.createClass({
           text: data.text,
           date: data.end_date,
           id: data.id,
-          url: '/api/update_goal/'
+          url: '/api/update/'
         })
       }.bind(this),
       error: function(xhr, status, err) {
@@ -340,7 +340,7 @@ var LifeGoal = React.createClass({
     }
     e.preventDefault();
     $.ajax({
-      url: '/api/completed/',
+      url: '/api/complete/',
       dataType: 'json',
       type: 'POST',
       data: request,
