@@ -129,14 +129,15 @@ def update_goal(request):
                 'text': description,
                 'end_date': date[0],
                 'id': goal.id}
+                
             return JsonResponse(response, safe=False)
 
         if (request.method == 'POST'):
             data = request.POST
-            print data
+
             a = data.get('end_date').decode('utf-8')
             end_date = datetime.datetime.strptime(a, '%Y-%m-%d')
-            print end_date
+
             description_words_array = data.get('description').split()
             if len(description_words_array) > 10:
                 brief_description = ' '.join(description_words_array[:10])
@@ -149,9 +150,7 @@ def update_goal(request):
             goal.name = data.get('name')
             goal.brief_description = brief_description
             goal.rest_description = rest_description
-            print '1'
             goal.end_date = end_date
-            print '2'
             goal.save()
             
             return JsonResponse({'message': 'Saved'}, safe=False)
