@@ -3,4 +3,4 @@ RUN mkdir /code
 ADD . /code
 WORKDIR /code
 RUN pip install -r requirements.txt
-ENTRYPOINT ./start.sh
+CMD bash ./start.sh
