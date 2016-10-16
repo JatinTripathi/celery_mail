@@ -7,6 +7,8 @@ from life_goals.models import LifeGoal
 
 import json, datetime
 
+brief_description_max = 10
+
 
 def home(request):
     try:
@@ -27,7 +29,7 @@ def goal(request):
             for goal in goals:
                 if str(goal.completed) == goal_type:
                     days_left = make_naive(goal.end_date, timezone=None) - datetime.datetime.now()
-                    if goal.rest_description: more = '[More..]'
+                    if goal.rest_description: more = '... More'
                     else: more = ''
                     data = {'id':goal.id, 
                             'name': goal.name, 
@@ -46,9 +48,9 @@ def goal(request):
             end_date = datetime.datetime.strptime(a, '%Y-%m-%d')
 
             description_words_array = data.get('description').split()
-            if len(description_words_array) > 10:
-                brief_description = ' '.join(description_words_array[:10])
-                rest_description = ' '.join(description_words_array[10:])
+            if len(description_words_array) > brief_description_max:
+                brief_description = ' '.join(description_words_array[:brief_description_max])
+                rest_description = ' '.join(description_words_array[brief_description_max:])
             else:
                 brief_description = data.get('description')
                 rest_description = None
@@ -139,9 +141,9 @@ def update_goal(request):
             end_date = datetime.datetime.strptime(a, '%Y-%m-%d')
 
             description_words_array = data.get('description').split()
-            if len(description_words_array) > 10:
-                brief_description = ' '.join(description_words_array[:10])
-                rest_description = ' '.join(description_words_array[10:])
+            if len(description_words_array) > brief_description_max:
+                brief_description = ' '.join(description_words_array[:brief_description_max])
+                rest_description = ' '.join(description_words_array[brief_description_max:])
             else:
                 brief_description = data.get('description')
                 rest_description = None
