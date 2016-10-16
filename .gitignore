@@ -5,4 +5,3 @@ __pycache__/
 
 #Front-end Files and Directories
 /node_modules
-/webpack-stats.json

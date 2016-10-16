@@ -18,7 +18,7 @@
     "react-hot-loader": "~3.0.0-beta.6"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/webpack -d"
   },
   "author": "jatin tripathi",
   "license": "ISC"
