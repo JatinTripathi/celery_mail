@@ -339,6 +339,9 @@
 	      dataType: 'json',
 	      cache: false,
 	      success: function (data) {
+	        if (data.length == 0) {
+	          this.props.history.pushState(null, 'editor/null');
+	        }
 	        data.sort(function (a, b) {
 	          return parseFloat(a.date) - parseFloat(b.date);
 	        });
