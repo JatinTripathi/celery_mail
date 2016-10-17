@@ -42,9 +42,9 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!**************************!*\
-  !*** ./assets/js/app.js ***!
-  \**************************/
+/*!***************************!*\
+  !*** ./assets/js/app.jsx ***!
+  \***************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63,7 +63,22 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	//---------------------DOM and Route Rendering-----------------//
+	_reactDom2.default.render(_react2.default.createElement(
+	  _reactRouter.Router,
+	  { history: _reactRouter.hashHistory },
+	  _react2.default.createElement(
+	    _reactRouter.Route,
+	    { path: '/', component: Goals },
+	    _react2.default.createElement(_reactRouter.IndexRoute, { component: LifeGoalsList }),
+	    _react2.default.createElement(_reactRouter.Route, { path: 'editor/:fill', name: 'editor', component: NewGoal }),
+	    _react2.default.createElement(_reactRouter.Route, { path: 'goal_list', component: LifeGoalsList })
+	  )
+	), document.getElementById('goals'));
+	
 	//--------------Parent Home Controller-----------------//
+	
+	//-------------React File for handling Home Page-----------------//
 	var Goals = _react2.default.createClass({
 	  displayName: 'Goals',
 	
@@ -147,8 +162,6 @@
 	});
 	
 	//-----------New Life-Goal Form----------------//
-	
-	//-------------React File for handling Home Page-----------------//
 	var NewGoal = _react2.default.createClass({
 	  displayName: 'NewGoal',
 	
@@ -248,7 +261,9 @@
 	    };
 	    return _react2.default.createElement(
 	      _reactBootstrap.Form,
-	      { style: textStyle, horizontal: true, className: 'newGoal', onSubmit: this.handleSubmit },
+	      { style: textStyle,
+	        horizontal: true, className: 'newGoal',
+	        onSubmit: this.handleSubmit },
 	      _react2.default.createElement(
 	        _reactBootstrap.FormGroup,
 	        { controlId: 'formHorizontalName' },
@@ -415,7 +430,12 @@
 	    var goalNodes = this.state.data.map(function (goal) {
 	      return _react2.default.createElement(
 	        LifeGoal,
-	        { onDelete: this.handleDelete.bind(this, goal.id), name: goal.name, days: goal.date, more: goal.more, id: goal.id, complete: goal.complete },
+	        { onDelete: this.handleDelete.bind(this, goal.id),
+	          name: goal.name,
+	          days: goal.date,
+	          more: goal.more,
+	          id: goal.id,
+	          complete: goal.complete },
 	        goal.text
 	      );
 	    }.bind(this));
@@ -572,19 +592,6 @@
 	    );
 	  }
 	});
-	
-	//---------------------DOM and Route Rendering-----------------//
-	_reactDom2.default.render(_react2.default.createElement(
-	  _reactRouter.Router,
-	  { history: _reactRouter.hashHistory },
-	  _react2.default.createElement(
-	    _reactRouter.Route,
-	    { path: '/', component: Goals },
-	    _react2.default.createElement(_reactRouter.IndexRoute, { component: LifeGoalsList }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'editor/:fill', name: 'editor', component: NewGoal }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'goal_list', component: LifeGoalsList })
-	  )
-	), document.getElementById('goals'));
 
 /***/ },
 /* 1 */
