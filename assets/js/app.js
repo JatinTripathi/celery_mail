@@ -393,14 +393,10 @@ var LifeGoal = React.createClass({
 
   render: function() {
     if (this.state.complete == 'True') {
-      var buttonText = 'Completed',
-          butttonColor = "#f9f9f9",
-          textColor = "#b3b3b3"
+      var buttonText = 'Completed'
     }
     else if (this.state.complete == 'False'){
-      var buttonText = 'Mark Complete',
-          butttonColor = "#42f47d",
-          textColor = "#666666"
+      var buttonText = 'Mark Complete'
     }
     var buttonStyle = {
         backgroundColor: "#f9f9f9",
