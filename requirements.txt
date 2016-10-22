@@ -1,2 +1,4 @@
-django
+flask
+flask_sqlalchemy
+flask_migrate
 psycopg2

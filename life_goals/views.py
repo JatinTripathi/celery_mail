@@ -11,8 +11,7 @@ brief_description_max = 10
 
 
 def home(request):
-    try:
-        return render(request, 'home.html')
+    try: return render(request, 'home.html')
         
     except Exception ,e:
         logging(e)
