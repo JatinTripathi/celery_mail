@@ -3,5 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-#Front-end Files and Directories
+#Front-end modules
 /node_modules
+
+#Virtual env
+/venv
