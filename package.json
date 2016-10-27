@@ -1,7 +1,7 @@
 {
-  "name": "goals",
+  "name": "celery_mail",
   "version": "1.0.0",
-  "description": "goals journal",
+  "description": "async mails",
   "main": "webpack.config.js",
   "dependencies": {
     "babel-core": "^6.17.0",
