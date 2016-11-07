@@ -8,3 +8,7 @@ __pycache__/
 
 #Virtual env
 /venv
+
+#Celery worker files
+/worker.log
+/worker.pid

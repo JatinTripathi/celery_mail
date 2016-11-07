@@ -10,7 +10,6 @@ services:
     web:
         environment:
             - APP_ENV=Production
-            - PYTHONPATH='{PYTHONPATH}:celery_mail'
         build: .
         ports:
         - "80:80"
