@@ -1,8 +1,11 @@
 from flask import send_from_directory
 from flask import render_template
+from flask import jsonify
+from flask import request
 
 from gateway import app
 from gateway.models import Mails
+from gateway.tasks import *
 
 
 @app.route('/api/home/static/<path:path>')
@@ -20,6 +23,16 @@ def home():
     except Exception ,e:
         logging(e)
 
+
+@app.route('/add/')
+def add_route():
+    first_num = int(request.args.get('x'))
+    second_num = int(request.args.get('y'))
+    print type(first_num), second_num
+
+    add.delay(first_num, second_num)
+
+    return jsonify(result='Success')
 
 def logging(err):
     print err

@@ -2,9 +2,18 @@ version: '2'
 services:
     db:
         image: postgres
+        environment:
+            - POSTGRES_PASSWORD=root
+            - POSTGRES_DB=mails
+    redis:
+        image: redis
     web:
-        build: ./scripts
+        environment:
+            - APP_ENV=Production
+            - PYTHONPATH='{PYTHONPATH}:celery_mail'
+        build: .
         ports:
         - "80:80"
         depends_on:
         - db
+        - redis
