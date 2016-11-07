@@ -5,6 +5,8 @@ mkdir -p /var/log/celery
 
 export PYTHONPATH='{PYTHONPATH}:/code'
 
+python manage.py db upgrade
+
 celery multi start w1 \
         -A gateway.celery \
         -l info \

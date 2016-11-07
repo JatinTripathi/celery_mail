@@ -34,5 +34,6 @@ def add_route():
 
     return jsonify(result='Success')
 
+
 def logging(err):
     print err

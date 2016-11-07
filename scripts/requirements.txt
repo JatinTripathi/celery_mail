@@ -5,3 +5,4 @@ Flask-Script
 Flask-Migrate
 celery
 redis
+uwsgi

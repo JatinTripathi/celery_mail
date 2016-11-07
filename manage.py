@@ -6,7 +6,8 @@ from flask_migrate import Migrate, MigrateCommand
 from gateway import app, db
 
 
-app.config.from_object(os.environ['APP_SETTINGS'])
+config = 'gateway.configurations.{}'.format(os.environ['APP_ENV'])
+app.config.from_object(config)
 
 migrate = Migrate(app, db)
 manager = Manager(app)
